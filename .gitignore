@@ -1,0 +1,38 @@
+# Terraform directories
+.terraform/
+.terraform/*
+
+git rm --cached terraform.tfstate
+git rm --cached terraform.tfstate.backup
+
+
+
+# Terraform lock file (optional to commit, but can ignore if auto-generated)
+.terraform.lock.hcl
+
+# Terraform plan files
+*.tfplan
+
+# Crash logs
+crash.log
+
+# CLI configuration files
+.terraformrc
+terraform.rc
+
+# Override files (local variables)
+*.tfvars
+*.tfvars.json
+
+# Sensitive files
+*.key
+*.pem
+
+# OS-specific files
+*.DS_Store
+Thumbs.db
+
+# Editor-specific files
+*.vscode/
+*.idea/
+*.swp
