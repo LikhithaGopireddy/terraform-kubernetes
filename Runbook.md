@@ -65,3 +65,33 @@ eksctl delete cluster --name haneesh-cloud --region us-west-1
 helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace
 ```
 
+### Install helm in gitbash, Download Helm Binary
+```
+
+curl -LO https://get.helm.sh/helm-v3.16.2-windows-amd64.zip
+unzip helm-v3.16.2-windows-amd64.zip
+mkdir -p /c/Users/$USERNAME/bin
+mv windows-amd64/helm.exe /c/Users/$USERNAME/bin/
+export PATH=$PATH:/c/Users/$USERNAME/bin
+helm version
+
+```
+
+### bitnami repo
+```
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo update
+
+```
+### install prometheus
+```
+helm install prometheus bitnami/prometheus --namespace monitoring
+kubectl get pods -n monitoring 
+```
+
+### Access the Prometheus Dashboard
+```
+kubectl port-forward svc/prometheus-server 9090:80 -n monitoring
+
+```
+
