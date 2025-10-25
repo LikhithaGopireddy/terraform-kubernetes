@@ -2,7 +2,7 @@ data "aws_availability_zones" "available" {}
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "5.21.0"
+  version = "6.5.0"
 
   name = "${var.cluster_name}-vpc"
   cidr = var.vpc_cidr
@@ -32,15 +32,15 @@ module "vpc" {
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "20.36.0"
+  version = "21.6.1"
 
-  cluster_name    = var.cluster_name
-  cluster_version = var.eks_version
+  name    = var.cluster_name
+  kubernetes_version = var.eks_version
   vpc_id          = module.vpc.vpc_id
   subnet_ids      = module.vpc.private_subnets
 
   enable_irsa                     = true
-  cluster_endpoint_public_access  = true
+  endpoint_public_access  = true
 
   eks_managed_node_groups = {
     default = {
@@ -61,5 +61,15 @@ module "eks" {
   tags = {
     Terraform   = "true"
     Environment = "prod"
+  }
+}
+
+terraform {
+  backend "s3" {
+    bucket       = "terraform-backend-bucket-lb1"
+    key          = "ec2/terraform.tfstate"
+    region       = "us-east-2"
+    encrypt      = true
+    use_lockfile = true  # Enable S3-native state locking
   }
 }

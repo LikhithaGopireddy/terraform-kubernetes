@@ -7,7 +7,7 @@ variable "cluster_name" {
 variable "aws_region" {
   description = "AWS region"
   type        = string
-  default     = "us-east-1"
+  default     = "us-east-2"
 }
 
 variable "vpc_cidr" {
@@ -19,7 +19,7 @@ variable "vpc_cidr" {
 variable "eks_version" {
   description = "Kubernetes version to use for EKS"
   type        = string
-  default     = "1.32"
+  default     = "1.33"
 }
 
 variable "node_desired_size" {
