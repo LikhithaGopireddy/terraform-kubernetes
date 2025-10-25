@@ -67,7 +67,7 @@ module "eks" {
 terraform {
   backend "s3" {
     bucket       = "terraform-backend-bucket-lb1"
-    key          = "ec2/terraform.tfstate"
+    # key          = "ec2/terraform.tfstate"
     region       = "us-east-2"
     encrypt      = true
     use_lockfile = true  # Enable S3-native state locking
